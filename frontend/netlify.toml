@@ -1,0 +1,7 @@
+[build]
+  publish = "dist" # Certifique-se de que este é o diretório correto onde o Vite coloca os arquivos de build
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
