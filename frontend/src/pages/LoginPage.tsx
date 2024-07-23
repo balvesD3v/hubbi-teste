@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { login } from "../services/auth";
 import { useNavigate } from "react-router-dom";
+import { InputField } from "../components/InputField";
+import Button from "../components/Button";
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -18,26 +20,20 @@ const LoginPage: React.FC = () => {
         <h1 className="text-2xl font-semibold mb-6 text-center text-white">
           Login
         </h1>
-        <input
+        <InputField
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="w-full text-white p-3 bg-slate-600 mb-4  border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <input
+        <InputField
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full text-white p-3 bg-slate-600 mb-6  border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="mb-6"
         />
-        <button
-          onClick={handleLogin}
-          className="w-full text-white p-3 bg-blue-500 font-semibold rounded-lg hover:bg-blue-600 transition-colors"
-        >
-          Login
-        </button>
+        <Button onClick={handleLogin} label="Login" />
         <p className="mt-4 text-center text-gray-600">
           Don't have an account?{" "}
           <a href="/register" className="text-blue-500 hover:underline">

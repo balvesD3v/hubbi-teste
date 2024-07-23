@@ -17,7 +17,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
         placeholder="Search about Star Wars..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none text-black pl-10 bg-slate-600 border-none"
+        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none text-white pl-10 bg-slate-600 border-none"
       />
       <AiOutlineSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
     </div>

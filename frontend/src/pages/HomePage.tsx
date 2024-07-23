@@ -5,15 +5,18 @@ import SwLogo from "../assets/hd-white-star-wars-logo-png-701751694787021te08lp5
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import SearchInput from "../components/SearchInput";
+import { Character } from "../types/Character";
+import { Ship } from "../types/Ship";
+import { Weapon } from "../types/Weapon";
 
 const HomePage: React.FC = () => {
-  const [characters, setCharacters] = useState<any[]>([]);
-  const [ships, setShips] = useState<any[]>([]);
-  const [weapons, setWeapons] = useState<any[]>([]);
+  const [characters, setCharacters] = useState<Character[]>([]);
+  const [ships, setShips] = useState<Ship[]>([]);
+  const [weapons, setWeapons] = useState<Weapon[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredCharacters, setFilteredCharacters] = useState<any[]>([]);
-  const [filteredShips, setFilteredShips] = useState<any[]>([]);
-  const [filteredWeapons, setFilteredWeapons] = useState<any[]>([]);
+  const [filteredCharacters, setFilteredCharacters] = useState<Character[]>([]);
+  const [filteredShips, setFilteredShips] = useState<Ship[]>([]);
+  const [filteredWeapons, setFilteredWeapons] = useState<Weapon[]>([]);
 
   useEffect(() => {
     const getData = async () => {

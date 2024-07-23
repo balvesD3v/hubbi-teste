@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { register } from "../services/auth";
 import { useNavigate } from "react-router-dom";
+import Button from "../components/Button";
+import { InputField } from "../components/InputField";
 
 const RegisterPage: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -30,33 +32,25 @@ const RegisterPage: React.FC = () => {
           Register
         </h1>
         {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
-        <input
+        <InputField
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="w-full text-white p-3 mb-4 bg-slate-600 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <input
+        <InputField
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full text-white p-3 mb-4 bg-slate-600 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <input
+        <InputField
           type="password"
           placeholder="Confirm Password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          className="w-full p-3 mb-6 bg-slate-600 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <button
-          onClick={handleRegister}
-          className="w-full p-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors"
-        >
-          Register
-        </button>
+        <Button onClick={handleRegister} label="Register" />
         <p className="mt-4 text-center text-gray-600">
           Already have an account?{" "}
           <a href="/login" className="text-blue-500 hover:underline">

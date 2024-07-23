@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchWeaponById } from "../services/api";
 import { BackButton } from "../components/BackButton";
+import { Weapon } from "../types/Weapon";
 
 const WeaponDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [weapon, setWeapon] = useState<any>(null);
+  const [weapon, setWeapon] = useState<Weapon | null>(null);
 
   useEffect(() => {
     const getWeapon = async () => {

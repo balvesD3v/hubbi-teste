@@ -3,10 +3,11 @@ import { useParams, Navigate } from "react-router-dom";
 import { fetchCharacterById } from "../services/api";
 import { isAuthenticated } from "../services/auth";
 import { BackButton } from "../components/BackButton";
+import { Character } from "../types/Character";
 
 const CharacterDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [character, setCharacter] = useState<any>(null);
+  const [character, setCharacter] = useState<Character | null>(null);
 
   useEffect(() => {
     const getCharacter = async () => {

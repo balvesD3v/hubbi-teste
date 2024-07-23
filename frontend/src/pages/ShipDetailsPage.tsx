@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchShipById } from "../services/api";
 import { BackButton } from "../components/BackButton";
+import { Ship } from "../types/Ship";
 
 const ShipDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [ship, setShip] = useState<any>(null);
+  const [ship, setShip] = useState<Ship | null>(null);
 
   useEffect(() => {
     const getShip = async () => {
