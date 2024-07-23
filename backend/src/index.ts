@@ -9,7 +9,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://hubbi-teste-frontend-j0f73ukqy-barveradevs-projects.vercel.app/",
+      "https://hubbi-teste-frontend.vercel.app",
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   })
