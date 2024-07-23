@@ -12,6 +12,10 @@ const LoginPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    if (!username || !password) {
+      toast.error("All fields are required");
+      return;
+    }
     try {
       await login(username, password);
       navigate("/");

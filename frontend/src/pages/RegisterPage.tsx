@@ -13,6 +13,11 @@ const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleRegister = async () => {
+    if (!username || !password) {
+      toast.error("All fields are required");
+      return;
+    }
+
     try {
       await register(username, password);
       toast.success("Registration successful! Please log in.");
