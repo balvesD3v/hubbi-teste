@@ -3,6 +3,8 @@ import { login } from "../services/auth";
 import { useNavigate } from "react-router-dom";
 import { InputField } from "../components/InputField";
 import Button from "../components/Button";
+import { toast } from "react-toastify";
+import { isAxiosError } from "../utils/errorUtils";
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -10,8 +12,20 @@ const LoginPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    await login(username, password);
-    navigate("/");
+    try {
+      await login(username, password);
+      navigate("/");
+    } catch (error: unknown) {
+      if (isAxiosError(error)) {
+        if (error.response?.status === 401) {
+          toast.error("Username or password is incorrect");
+        } else {
+          toast.error("An unexpected error occurred");
+        }
+      } else {
+        toast.error("An unexpected error occurred");
+      }
+    }
   };
 
   return (
