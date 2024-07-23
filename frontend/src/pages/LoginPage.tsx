@@ -23,18 +23,18 @@ const LoginPage: React.FC = () => {
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="w-full p-3 bg-slate-600 mb-4  border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full text-white p-3 bg-slate-600 mb-4  border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-3 bg-slate-600 mb-6  border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full text-white p-3 bg-slate-600 mb-6  border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <button
           onClick={handleLogin}
-          className="w-full p-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors"
+          className="w-full text-white p-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors"
         >
           Login
         </button>
