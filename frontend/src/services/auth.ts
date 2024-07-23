@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://hubbi-teste.vercel.app/auth";
+const API_URL = "https://hubbi-teste.onrender.com/auth";
 
 export const login = async (username: string, password: string) => {
   try {
