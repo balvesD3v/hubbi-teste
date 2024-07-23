@@ -7,7 +7,10 @@ const app = express();
 // Configuração do CORS
 app.use(
   cors({
-    origin: "https://hubbi-teste-frontend.vercel.app",
+    origin: [
+      "https://hubbi-teste-frontend.vercel.app",
+      "http://localhost:5173/",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   })
 );
