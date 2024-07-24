@@ -70,7 +70,7 @@ Acesse o projeto em produção [aqui](https://hubbi-teste-frontend.vercel.app/).
 
 ## Estrutura do Projeto
 
-    - src/components: Contém componentes reutilizáveis, como botões e campos de entrada.
+    src/components: Contém componentes reutilizáveis, como botões e campos de entrada.
 
     src/pages: Contém as páginas principais da aplicação, como a homepage e as páginas de detalhes.
 
@@ -82,7 +82,8 @@ Acesse o projeto em produção [aqui](https://hubbi-teste-frontend.vercel.app/).
 
 ### Login e Registro
 
-     Implemente as funcionalidades de login e registro utilizando JWT para autenticação. Adicione rotas protegidas para acessar as páginas restritas.
+     Implementei as funcionalidades de login e registro utilizando JWT para autenticação.
+     Adicione rotas protegidas para acessar as páginas restritas.
 
 ### Licença
 
