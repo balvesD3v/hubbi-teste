@@ -18,7 +18,7 @@ const ShipDetailsPage: React.FC = () => {
 
   if (!ship)
     return (
-      <div className="min-h-screen flex items-center justify-center text-gray-700">
+      <div className="min-h-screen flex items-center justify-center text-gray-700 bg-gray-950">
         Loading...
       </div>
     );

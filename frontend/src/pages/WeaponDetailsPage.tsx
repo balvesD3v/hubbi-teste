@@ -20,8 +20,12 @@ const WeaponDetailsPage: React.FC = () => {
     getWeapon();
   }, [id]);
 
-  if (!weapon) return <div>Loading...</div>;
-
+  if (!weapon)
+    return (
+      <div className="min-h-screen flex items-center justify-center text-gray-700 bg-gray-950">
+        Loading...
+      </div>
+    );
   return (
     <div className="min-h-screen bg-gray-950 bg-cover flex items-center py-5 text-white">
       <div className="container mx-auto max-w-3xl bg-gray-800 bg-opacity-75 p-6 rounded-lg shadow-md">

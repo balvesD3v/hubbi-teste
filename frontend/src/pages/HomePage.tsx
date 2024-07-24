@@ -8,6 +8,7 @@ import SearchInput from "../components/SearchInput";
 import { Character } from "../types/Character";
 import { Ship } from "../types/Ship";
 import { Weapon } from "../types/Weapon";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const HomePage: React.FC = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -17,18 +18,25 @@ const HomePage: React.FC = () => {
   const [filteredCharacters, setFilteredCharacters] = useState<Character[]>([]);
   const [filteredShips, setFilteredShips] = useState<Ship[]>([]);
   const [filteredWeapons, setFilteredWeapons] = useState<Weapon[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
-      const charactersResponse = await fetchCharacters();
-      const shipsResponse = await fetchShips();
-      const weaponsResponse = await fetchWeapons();
-      setCharacters(charactersResponse.data.results);
-      setShips(shipsResponse.data.results);
-      setWeapons(weaponsResponse.data.results);
-      setFilteredCharacters(charactersResponse.data.results);
-      setFilteredShips(shipsResponse.data.results);
-      setFilteredWeapons(weaponsResponse.data.results);
+      try {
+        const charactersResponse = await fetchCharacters();
+        const shipsResponse = await fetchShips();
+        const weaponsResponse = await fetchWeapons();
+        setCharacters(charactersResponse.data.results);
+        setShips(shipsResponse.data.results);
+        setWeapons(weaponsResponse.data.results);
+        setFilteredCharacters(charactersResponse.data.results);
+        setFilteredShips(shipsResponse.data.results);
+        setFilteredWeapons(weaponsResponse.data.results);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      } finally {
+        setLoading(false);
+      }
     };
     getData();
   }, []);
@@ -76,55 +84,56 @@ const HomePage: React.FC = () => {
           <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </div>
       </header>
-      <div className="container mx-auto max-w-6xl bg-gray-800 bg-opacity-75 p-6 mt-8 rounded-lg shadow-md">
-        <h1 className="text-3xl font-bold mb-6 text-white">Characters</h1>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
-          {filteredCharacters.map((char) => (
-            <Link
-              to={`/characters/${char.url.split("/").slice(-2, -1)[0]}`}
-              className="text-xl font-medium text-blue-400"
-            >
-              <div
-                key={char.url}
-                className="bg-gray-900 rounded-lg p-4 hover:shadow-xl transition-shadow duration-300"
-              >
-                {char.name}
-              </div>
-            </Link>
-          ))}
-        </div>
-        <h1 className="text-3xl font-bold mb-6 text-white">Ships</h1>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredShips.map((ship) => (
-            <Link
-              to={`/ships/${ship.url.split("/").slice(-2, -1)[0]}`}
-              className="text-xl font-medium text-blue-400"
-            >
-              <div
-                key={ship.url}
-                className="bg-gray-900 rounded-lg p-4 hover:shadow-xl transition-shadow duration-300"
-              >
-                {ship.name}
-              </div>
-            </Link>
-          ))}
-        </div>
-        <h1 className="text-3xl font-bold mb-6 text-white mt-6">Weapons</h1>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredWeapons.map((weapon) => (
-            <Link
-              to={`/weapons/${weapon.url.split("/").slice(-2, -1)[0]}`}
-              className="text-xl font-medium text-blue-400"
-            >
-              <div
-                key={weapon.url}
-                className="bg-gray-900 rounded-lg p-4 hover:shadow-xl transition-shadow duration-300"
-              >
-                {weapon.name}
-              </div>
-            </Link>
-          ))}
-        </div>
+      <div className="container mx-auto max-w-4xl bg-white p-6 mt-8 rounded-lg shadow-md">
+        {loading ? (
+          <div className="flex justify-center items-center h-full">
+            <ClipLoader color="#ffffff" size={50} />
+          </div>
+        ) : (
+          <>
+            <h1 className="text-3xl font-bold mb-6 text-gray-800">
+              Characters
+            </h1>
+            <ul className="space-y-4 mb-8">
+              {filteredCharacters.map((char) => (
+                <li key={char.url} className="border-b border-gray-300 pb-2">
+                  <Link
+                    to={`/characters/${char.url.split("/").slice(-2, -1)[0]}`}
+                    className="text-xl font-medium text-blue-500 hover:underline"
+                  >
+                    {char.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <h1 className="text-3xl font-bold mb-6 text-gray-800">Ships</h1>
+            <ul className="space-y-4 mb-8">
+              {filteredShips.map((ship) => (
+                <li key={ship.url} className="border-b border-gray-300 pb-2">
+                  <Link
+                    to={`/ships/${ship.url.split("/").slice(-2, -1)[0]}`}
+                    className="text-xl font-medium text-blue-500 hover:underline"
+                  >
+                    {ship.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <h1 className="text-3xl font-bold mb-6 text-gray-800">Weapons</h1>
+            <ul className="space-y-4 mb-8">
+              {filteredWeapons.map((weapon) => (
+                <li key={weapon.url} className="border-b border-gray-300 pb-2">
+                  <Link
+                    to={`/weapons/${weapon.url.split("/").slice(-2, -1)[0]}`}
+                    className="text-xl font-medium text-blue-500 hover:underline"
+                  >
+                    {weapon.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
     </div>
   );
