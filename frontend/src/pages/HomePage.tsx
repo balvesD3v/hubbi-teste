@@ -1,3 +1,4 @@
+// src/pages/HomePage.tsx
 import React, { useEffect, useState } from "react";
 import { fetchCharacters, fetchShips, fetchWeapons } from "../services/api";
 import { Link } from "react-router-dom";
@@ -84,54 +85,55 @@ const HomePage: React.FC = () => {
           <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </div>
       </header>
-      <div className="container mx-auto max-w-4xl bg-white p-6 mt-8 rounded-lg shadow-md">
+      <div className="container mx-auto max-w-6xl bg-gray-800 bg-opacity-75 p-6 mt-8 rounded-lg shadow-md">
         {loading ? (
-          <div className="flex justify-center items-center h-full">
-            <ClipLoader color="#ffffff" size={50} />
+          <div className="flex justify-center items-center h-64">
+            <ClipLoader color="#FFFFFF" loading={loading} size={150} />
           </div>
         ) : (
           <>
-            <h1 className="text-3xl font-bold mb-6 text-gray-800">
-              Characters
-            </h1>
-            <ul className="space-y-4 mb-8">
+            <h1 className="text-3xl font-bold mb-6 text-white">Characters</h1>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
               {filteredCharacters.map((char) => (
-                <li key={char.url} className="border-b border-gray-300 pb-2">
-                  <Link
-                    to={`/characters/${char.url.split("/").slice(-2, -1)[0]}`}
-                    className="text-xl font-medium text-blue-500 hover:underline"
-                  >
+                <Link
+                  key={char.url}
+                  to={`/characters/${char.url.split("/").slice(-2, -1)[0]}`}
+                  className="text-xl font-medium text-blue-400"
+                >
+                  <div className="bg-gray-900 rounded-lg p-4 hover:shadow-xl transition-shadow duration-300">
                     {char.name}
-                  </Link>
-                </li>
+                  </div>
+                </Link>
               ))}
-            </ul>
-            <h1 className="text-3xl font-bold mb-6 text-gray-800">Ships</h1>
-            <ul className="space-y-4 mb-8">
+            </div>
+            <h1 className="text-3xl font-bold mb-6 text-white">Ships</h1>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
               {filteredShips.map((ship) => (
-                <li key={ship.url} className="border-b border-gray-300 pb-2">
-                  <Link
-                    to={`/ships/${ship.url.split("/").slice(-2, -1)[0]}`}
-                    className="text-xl font-medium text-blue-500 hover:underline"
-                  >
+                <Link
+                  key={ship.url}
+                  to={`/ships/${ship.url.split("/").slice(-2, -1)[0]}`}
+                  className="text-xl font-medium text-blue-400"
+                >
+                  <div className="bg-gray-900 rounded-lg p-4 hover:shadow-xl transition-shadow duration-300">
                     {ship.name}
-                  </Link>
-                </li>
+                  </div>
+                </Link>
               ))}
-            </ul>
-            <h1 className="text-3xl font-bold mb-6 text-gray-800">Weapons</h1>
-            <ul className="space-y-4 mb-8">
+            </div>
+            <h1 className="text-3xl font-bold mb-6 text-white">Weapons</h1>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {filteredWeapons.map((weapon) => (
-                <li key={weapon.url} className="border-b border-gray-300 pb-2">
-                  <Link
-                    to={`/weapons/${weapon.url.split("/").slice(-2, -1)[0]}`}
-                    className="text-xl font-medium text-blue-500 hover:underline"
-                  >
+                <Link
+                  key={weapon.url}
+                  to={`/weapons/${weapon.url.split("/").slice(-2, -1)[0]}`}
+                  className="text-xl font-medium text-blue-400"
+                >
+                  <div className="bg-gray-900 rounded-lg p-4 hover:shadow-xl transition-shadow duration-300">
                     {weapon.name}
-                  </Link>
-                </li>
+                  </div>
+                </Link>
               ))}
-            </ul>
+            </div>
           </>
         )}
       </div>
